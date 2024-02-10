@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <div
       style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" }}
-      className="text-white  rounded-xl "
+      className="text-white  rounded-xl h-[1300px] "
     >
       <div className="flex ">
         <Image
@@ -85,7 +85,7 @@ const Header = () => {
       </div>
 
       <div className="flex  flex-col mt-32 pb-32 ml-32 justify-center ">
-        <form action="" className="flex border-2 rounded w-[600px] h-[50px] ">
+        <form action="post" className="flex border-2 rounded w-[600px] h-[50px] ">
           <input
             placeholder="Start typing..."
             type="text"
