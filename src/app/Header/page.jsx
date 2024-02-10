@@ -11,21 +11,22 @@ import submit from "/public/submit.svg";
 import upload from "/public/upload.svg";
 import check from "/public/tick.svg";
 const Header = () => {
-  const [text, settext] = useState(null);
-  const [apiData, setApiData] = useState("");
+//   const [text, settext] = useState(null);
+//   const [apiData, setApiData] = useState("");
 
-  const api = () => {
-    chatreply(async (res) => {
-      data = res.success;
-      settext(data);
-    });
-  };
+//   const api = () => {
+//     chatreply(async (res) => {
+//       data = res.success;
+//       settext(data);
+//     });
+//   };
   return (
     <div
       style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" }}
-      className="text-white  rounded-xl h-[1300px] "
+      className="text-white  rounded-xl h-[1300px] flex gap-x-[430px] "
     >
-      <div className="flex ">
+    <div className="">
+      <div className="flex  ">
         <Image
           src={blue_logo}
           alt="blue Logo"
@@ -34,7 +35,7 @@ const Header = () => {
           className="mt-12 ml-16"
         />
         <h2 className=" mt-10 ml-96 text-xl font-bold">
-          AI{" "}
+          AI{" "} 
           <span
             style={{
                 background: "linear-gradient(90deg,#ff27c3 14.12%,#2496ff 71.08%);-webkit-background-clip: text;-webkit-text-fill-color: transparent",
@@ -85,25 +86,24 @@ const Header = () => {
       </div>
 
       <div className="flex  flex-col mt-32 pb-32 ml-32 justify-center ">
-        <form action="post" className="flex border-2 rounded w-[600px] h-[50px] ">
+        <form action="" className="flex border-2 rounded w-[600px] h-[50px] ">
           <input
             placeholder="Start typing..."
             type="text"
             className="bg-transparent w-[550px] p-5 border-0 focus:outline-none "
-            value={apiData}
-            onChange={(e) => setApiData(e.target.value)}
+           
           />
           <button type="submit">
-            <Image src={submit} alt="submit" />{" "}
+            <Image src={submit} alt="submit" />
           </button>
         </form>
         <p className="text-xs ml-[200px]">
           AI can make mistakes, verify all information.
         </p>
       </div>
-
+      </div>
       {/*right side */}
-      <div className="flex flex-col justify-centers items-end relative top-[-850px]">
+      <div className="flex flex-col justify-centers items-end relative pt-16">
       <div >
       <Image src={upload} alt="upload" height={20} width={20}/>
         <p className="text-sm mt-5">Upload Documents to process</p>
