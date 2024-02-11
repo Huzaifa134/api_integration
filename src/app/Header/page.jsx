@@ -10,16 +10,23 @@ import plant from "/public/plant.svg";
 import submit from "/public/submit.svg";
 import upload from "/public/upload.svg";
 import check from "/public/tick.svg";
-const Header = () => {
-//   const [text, settext] = useState(null);
-//   const [apiData, setApiData] = useState("");
+import { chatData } from "../api/Chatmain";
 
-//   const api = () => {
-//     chatreply(async (res) => {
-//       data = res.success;
-//       settext(data);
-//     });
-//   };
+const Header = () => {
+  const [text, settext] = useState(null);
+  const [apiData, setApiData] = useState("");
+
+  const api = () => {
+    chatreply(async (res) => {
+      data = res.success;
+      settext(data);
+    });
+  };
+  const sendData=()=>{
+   
+
+  }
+//   chatData()
   return (
     <div
       style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" }}
@@ -91,6 +98,9 @@ const Header = () => {
             placeholder="Start typing..."
             type="text"
             className="bg-transparent w-[550px] p-5 border-0 focus:outline-none "
+            value={apiData}
+            onChange={(e) => setApiData(e.target.value)}
+    
            
           />
           <button type="submit">
