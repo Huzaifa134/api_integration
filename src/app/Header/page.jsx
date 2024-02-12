@@ -29,8 +29,9 @@ const Header = () => {
 //   chatData()
   return (
     <div
-      style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" }}
-      className="text-white  rounded-xl h-[1300px] flex gap-x-[430px] "
+      style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" ,justifyContent:"space-between" }}
+      className="text-white  rounded-xl  flex flex-wrap  "
+      
     >
     <div className="">
       <div className="flex  ">
@@ -41,7 +42,7 @@ const Header = () => {
           height={18}
           className="mt-12 ml-16"
         />
-        <h2 className=" mt-10 ml-96 text-xl font-bold">
+        <h2 className=" mt-10  md:ml-96 text-xl font-bold sm:ml-60 max-[690px]:ml-32">
           AI{" "} 
           <span
             style={{
@@ -53,7 +54,7 @@ const Header = () => {
         </h2>
       </div>
 
-      <div className="mt-20 ml-32 flex flex-col gap-y-10 text-sm">
+      <div className="mt-20 ml-32 flex flex-col gap-y-10 text-sm sm:ml-20 max-[690px]:ml-10">
         <div className="flex  items-start">
           <Image src={profile} alt="profile" height={30} width={30} />
           <p className="ml-8 w-96">
@@ -87,17 +88,17 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center rounded border-2 border-white w-64 p-3 ml-48">
+      <div className="flex justify-center items-center rounded border-2 border-white w-64 p-3 ml-48 max-[640px]:ml-28">
         <p className="ml-5 mr-5 text-xs">Retaining Wall Designer </p>
         <Image src={db} alt="book" height={30} width={30} />
       </div>
 
-      <div className="flex  flex-col mt-32 pb-32 ml-32 justify-center ">
-        <form action="" className="flex border-2 rounded w-[600px] h-[50px] ">
+      <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center ">
+        <form action="" className="flex border-2 rounded w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] ">
           <input
             placeholder="Start typing..."
             type="text"
-            className="bg-transparent w-[550px] p-5 border-0 focus:outline-none "
+            className="bg-transparent md:w-[550px] sm:w-[355px]  max-[690px]:w-[350px]   p-5  border-0 focus:outline-none "
             value={apiData}
             onChange={(e) => setApiData(e.target.value)}
     
@@ -107,14 +108,14 @@ const Header = () => {
             <Image src={submit} alt="submit" />
           </button>
         </form>
-        <p className="text-xs ml-[200px]">
+        <p className="text-xs ml-[200px] sm-ml:10 max-[690px]:ml-10">
           AI can make mistakes, verify all information.
         </p>
       </div>
       </div>
       {/*right side */}
-      <div className="flex flex-col justify-centers items-end relative pt-16">
-      <div >
+      <div className="flex lg:flex-col lg:justify-center flex-wrap lg:items-start relative pt-16 mr-10 ">
+      <div  className="ml-10">
       <Image src={upload} alt="upload" height={20} width={20}/>
         <p className="text-sm mt-5">Upload Documents to process</p>
         <div className="flex gap-y-2 flex-col">
@@ -134,7 +135,7 @@ const Header = () => {
         </div>
 
 
-        <div className="mt-10">
+        <div className="mt-10 ml-10">
         <p className="text-sm">Use Preloaded Knowledge Base</p>
         <div className="flex gap-y-2 flex-col">
           <div className="bg-[#212124] flex h-[60px] max-w-64 items-center p-3 rounded-lg">
@@ -157,7 +158,7 @@ const Header = () => {
         </div>
 
 
-        <div className="mt-10">
+        <div className="mt-10 ml-10">
         <p className="text-sm">Use Preloaded Knowledge Base</p>
         <div className="flex gap-y-2 flex-col">
           <div className="bg-[#212124] flex h-[60px] max-w-64 items-center p-3 rounded-lg">
