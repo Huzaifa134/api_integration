@@ -11,8 +11,8 @@ import {
 
 const Nav = () => {
   return (
-    <div className="mb-10 text-white w-[97%]  " style={{margin:"10px auto"}}>
-      <nav className="flex   ml-44 mt-10 ">
+    <div className="mb-10 text-white w-[97%] max-[570px]:w-[100%] " style={{margin:"10px auto"}}>
+      <nav className="flex   ml-44 mt-10 max-[570px]:ml-10">
         <ul className="lg:flex gap-x-20 hidden">
           <li>
             
@@ -70,7 +70,7 @@ const Nav = () => {
         </div>
       </nav>
      
-      <div className="mr-44 mt-[-20px]" style={{float:"right"}}>
+      <div className="mr-44 max-[570px]:mr-10 mt-[-20px]" style={{float:"right"}}>
         
         
         

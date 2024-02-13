@@ -42,7 +42,7 @@ const Header = () => {
           height={18}
           className="mt-12 ml-16"
         />
-        <h2 className=" mt-10  md:ml-96 text-xl font-bold sm:ml-60 max-[690px]:ml-32">
+        <h2 className=" mt-10  md:ml-96 text-xl font-bold sm:ml-60 max-[488px]:ml-5 max-[690px]:ml-32">
           AI{" "} 
           <span
             style={{
@@ -57,7 +57,7 @@ const Header = () => {
       <div className="mt-20 ml-32 flex flex-col gap-y-10 text-sm sm:ml-20 max-[690px]:ml-10">
         <div className="flex  items-start">
           <Image src={profile} alt="profile" height={30} width={30} />
-          <p className="ml-8 w-96">
+          <p className="ml-8 w-96  max-[483px]:w-[250px]">
             You are a structural engineer designing a circular 1 in thick steel
             liner with anchors around (radially). these anchors are to reduce
             compressive forces on the liner from ground loads. Can you give me
@@ -80,7 +80,7 @@ const Header = () => {
           <p className="ml-8">server response #1</p>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center max-[483px]:w-[250px]">
           <Image src={plant} alt="book" height={40} width={40} />
           <p className="ml-5">
             Sure, I have added them. Here’s the link to the model:
@@ -88,17 +88,17 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center rounded border-2 border-white w-64 p-3 ml-48 max-[640px]:ml-28">
-        <p className="ml-5 mr-5 text-xs">Retaining Wall Designer </p>
+      <div className=" max-[393px]:w-[150px] flex justify-center items-center rounded border-2 border-white w-64 p-3 ml-48 max-[640px]:ml-28">
+        <p className=" max-[393px]:text-[9px] max-[393px]:ml-1 ml-5 mr-5 text-xs">Retaining Wall Designer </p>
         <Image src={db} alt="book" height={30} width={30} />
       </div>
 
       <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center ">
-        <form action="" className="flex border-2 rounded w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] ">
+        <form action="" className="flex border-2 rounded max-[469px]:w-[250px] sm:w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] ">
           <input
             placeholder="Start typing..."
             type="text"
-            className="bg-transparent md:w-[550px] sm:w-[355px]  max-[690px]:w-[350px]   p-5  border-0 focus:outline-none "
+            className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none "
             value={apiData}
             onChange={(e) => setApiData(e.target.value)}
     
