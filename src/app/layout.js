@@ -1,7 +1,8 @@
-import { Inter } from "next/font/google";
+import { Inter, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import Nav from "./Nav/page"
+import Nav from "./Nav/page";
 const inter = Inter({ subsets: ["latin"] });
+const source_san = Source_Sans_3({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -11,9 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-[#05060e]">
-      <body className={inter.className} >
-      <Nav/>
-      {children}</body>
+      <body className={source_san.className}>
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }

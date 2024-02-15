@@ -11,33 +11,56 @@ import submit from "/public/submit.svg";
 import upload from "/public/upload.svg";
 import check from "/public/tick.svg";
 import { chatData } from "../api/Chatmain";
-// import { ChatLayout } from "@/components/chat/chat-layout";
-import { ChatLayout } from "../../components/chat/chat-layout";
 
 const Header = () => {
-  // const [text, settext] = useState(null);
   const [apiData, setApiData] = useState("");
 
-  // const api = () => {
-  //   chatreply(async (res) => {
-  //     data = res.success;
-  //     settext(data);
-  //   });
-  // };
-  // const sendData = () => {};
-  //   chatData()
+  const [promptArea, setPromptArea] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [promptResponse, setPromptResponse] = useState("");
+
+  const handleSubmit = async () => {
+    const url = "https://ashva.pythonanywhere.com/c";
+    var tmpPromptResponse = "";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: "bhoshaga",
+          sessionID: "5380694e-70fe-4ac5-94bf-82d070de4b78",
+          message: promptArea,
+        }),
+      });
+
+      // eslint-disable-next-line no-undef
+      let decoder = new TextDecoderStream();
+      if (!response.body) return;
+      const reader = response.body.pipeThrough(decoder).getReader();
+
+      while (true) {
+        var { value, done } = await reader.read();
+
+        if (done) {
+          break;
+        } else {
+          tmpPromptResponse += value;
+          setPromptResponse(tmpPromptResponse);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
-      style={{
-        backgroundColor: "#161618",
-        width: "97%",
-        margin: "0 auto",
-        justifyContent: "space-between",
-      }}
-      className="text-white  rounded-xl  flex flex-wrap  "
+      style={{ backgroundColor: "#161618", width: "97%", margin: "0 auto" }}
+      className="text-white  rounded-xl h-[1300px] flex gap-x-[430px] "
     >
-      <div className="flex flex-col items-center w-[800px]">
-        <div className="flex ">
+      <div className="">
+        <div className="flex  ">
           <Image
             src={blue_logo}
             alt="blue Logo"
@@ -45,7 +68,7 @@ const Header = () => {
             height={18}
             className="mt-12 ml-16"
           />
-          <h2 className=" mt-10  md:ml-96 text-xl font-bold sm:ml-60 max-[488px]:ml-5 max-[690px]:ml-32">
+          <h2 className=" mt-10 ml-96 text-xl font-bold">
             AI{" "}
             <span
               style={{
@@ -58,78 +81,79 @@ const Header = () => {
           </h2>
         </div>
 
-        {/* <div className="mt-20 ml-32 flex flex-col gap-y-10 text-sm sm:ml-20 max-[690px]:ml-10">
-          <div className="flex  items-start">
-            <Image src={profile} alt="profile" height={30} width={30} />
-            <p className="ml-8 w-96  max-[483px]:w-[250px]">
-              You are a structural engineer designing a circular 1 in thick
-              steel liner with anchors around (radially). these anchors are to
-              reduce compressive forces on the liner from ground loads. Can you
-              give me some sources to read / design this?
-            </p>
-          </div>
+        {/* <div className="mt-20 ml-32 flex flex-col gap-y-10 text-sm">
+        <div className="flex  items-start">
+          <Image src={profile} alt="profile" height={30} width={30} />
+          <p className="ml-8 w-96">
+            You are a structural engineer designing a circular 1 in thick steel
+            liner with anchors around (radially). these anchors are to reduce
+            compressive forces on the liner from ground loads. Can you give me
+            some sources to read / design this?
+          </p>
+        </div>
 
-          <div className="flex items-center">
-            <Image src={book} alt="book" height={30} width={30} />
-            <p className="ml-8">Uploading filename.pdf</p>
-          </div>
+        <div className="flex items-center">
+          <Image src={book} alt="book" height={30} width={30} />
+          <p className="ml-8">Uploading filename.pdf</p>
+        </div>
 
-          <div className="flex  items-center">
-            <Image src={search} alt="book" height={30} width={30} />
-            <p className="ml-8">Reading file</p>
-          </div>
+        <div className="flex  items-center">
+          <Image src={search} alt="book" height={30} width={30} />
+          <p className="ml-8">Reading file</p>
+        </div>
 
-          <div className="flex  items-center">
-            <Image src={db} alt="book" height={30} width={30} />
-            <p className="ml-8">server response #1</p>
-          </div>
+        <div className="flex  items-center">
+          <Image src={db} alt="book" height={30} width={30} />
+          <p className="ml-8">server response #1</p>
+        </div>
 
-          <div className="flex items-center max-[483px]:w-[250px]">
-            <Image src={plant} alt="book" height={40} width={40} />
-            <p className="ml-5">
-              Sure, I have added them. Here’s the link to the model:
-            </p>
+        <div className="flex items-center">
+          <Image src={plant} alt="book" height={40} width={40} />
+          <p className="ml-5">
+            Sure, I have added them. Here’s the link to the model:
+          </p>
+        </div>
+      </div> */}
+
+        <div className="w-[500px] h-[500px] mx-24 my-11 bg-white ">
+          <div className="">
+            <span className="text-black">{promptResponse}</span>
           </div>
         </div>
 
-        <div className=" max-[393px]:w-[150px] flex justify-center items-center rounded border-2 border-white w-64 p-3 ml-48 max-[640px]:ml-28">
-          <p className=" max-[393px]:text-[9px] max-[393px]:ml-1 ml-5 mr-5 text-xs">
-            Retaining Wall Designer{" "}
-          </p>
-          <Image src={db} alt="book" height={30} width={30} />
-        </div> */}
-
-        <ChatLayout
-          className="pt-6"
-          navCollapsedSize={8}
-          defaultCollapsed={true}
-        />
-
-        <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center ">
-          <form
-            action=""
-            className="flex border-2 rounded max-[469px]:w-[250px] sm:w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] "
-          >
+        <div className="flex  flex-col mt-32 pb-32 ml-32 justify-center ">
+          {/* <form action="" className="flex border-2 rounded w-[600px] h-[50px] ">
             <input
               placeholder="Start typing..."
               type="text"
-              className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none "
-              value={apiData}
-              onChange={(e) => setApiData(e.target.value)}
+              className="bg-transparent w-[550px] p-5 border-0 focus:outline-none "
+              value={promptArea}
+              onChange={(e) => setPromptArea(e.target.value)}
             />
-            <button type="submit">
+            <button onClick={handleSubmit}>
               <Image src={submit} alt="submit" />
             </button>
-          </form>
-          {/* <ChatLayout navCollapsedSize={8} /> */}
-          <p className="text-xs ml-[200px] sm-ml:10 max-[690px]:ml-10">
+          </form> */}
+
+          <textarea
+            className="bg-[#054b4b]"
+            rows={3}
+            onChange={(e) => setPromptArea(e.target.value)}
+            style={{ order: 2, marginBottom: "1rem" }}
+            value={promptArea}
+          ></textarea>
+          <button onClick={handleSubmit}>
+            <Image src={submit} alt="submit" />
+          </button>
+
+          <p className="text-xs ml-[200px]">
             AI can make mistakes, verify all information.
           </p>
         </div>
       </div>
       {/*right side */}
-      <div className="flex lg:flex-col lg:justify-center flex-wrap lg:items-start relative pt-16 mr-10 ">
-        <div className="ml-10">
+      <div className="flex flex-col justify-centers items-end relative pt-16">
+        <div>
           <Image src={upload} alt="upload" height={20} width={20} />
           <p className="text-sm mt-5">Upload Documents to process</p>
           <div className="flex gap-y-2 flex-col">
@@ -148,7 +172,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="mt-10 ml-10">
+        <div className="mt-10">
           <p className="text-sm">Use Preloaded Knowledge Base</p>
           <div className="flex gap-y-2 flex-col">
             <div className="bg-[#212124] flex h-[60px] max-w-64 items-center p-3 rounded-lg">
@@ -170,7 +194,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="mt-10 ml-10">
+        <div className="mt-10">
           <p className="text-sm">Use Preloaded Knowledge Base</p>
           <div className="flex gap-y-2 flex-col">
             <div className="bg-[#212124] flex h-[60px] max-w-64 items-center p-3 rounded-lg">
