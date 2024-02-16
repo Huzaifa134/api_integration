@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import blue_logo from "/public/blue_left.svg";
 import profile from "/public/profile.svg";
@@ -16,7 +16,18 @@ import Chat from "@/components/chat/chat";
 
 const Header = () => {
   const [text, settext] = useState(null);
-  const [apiData, setApiData] = useState("");
+  const [anything, setAnything] = useState(false);
+  const chatContainerRef = useRef(null);
+  // const [apiData, setApiData] = useState("");
+  let [products, setProducts] = useState([]);
+  useEffect(() => {
+    if (anything) {
+      settext("");
+      scrollToBottom();
+    } else {
+      setAnything(true);
+    }
+  }, [products]);
 
   const api = () => {
     chatreply(async (res) => {
@@ -25,26 +36,12 @@ const Header = () => {
     });
   };
   const sendData = () => {};
-
-  const products = [
-    {
-      id: 1,
-      message: "Hello",
-      reply: "bye",
-    },
-    {
-      id: 2,
-      message: "dasx",
-      reply: "ddde",
-    },
-    {
-      id: 3,
-      message: "Hazzzzzlo",
-      reply: "bfwtttq",
-    },
-    // More products...
-  ];
-
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  };
   //   chatData()
   return (
     <div
@@ -121,118 +118,69 @@ const Header = () => {
           <Image src={db} alt="book" height={30} width={30} />
         </div> */}
 
-        <div className="w-500px w-full mt-8 h-[485px] overflow-auto mb-3 no-scrollbar">
-          {/* {products.map((product) => (
+        <div
+          className="w-500px w-full mt-8 h-[485px] overflow-auto mb-3 no-scrollbar"
+          ref={chatContainerRef}
+        >
+          {products.map((product) => (
             <div key={product.id}>
-              <div className="flex items-start gap-2.5 pt-3 ">
-                <Image
-                  className="w-8 h-8 rounded-full"
-                  src={chatgpt}
-                  alt="alt"
-                  width={100}
-                  height={100}
-                />
-                <div className="flex flex-col  w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#ffeaf8] rounded-e-xl rounded-es-xl dark:bg-gray-700">
-                  <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                    <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                      Stru Bot
-                    </span>
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                      11:46
-                    </span>
-                  </div>
+              {!product.user ? (
+                <div className="flex items-start gap-2.5 pt-3 ">
+                  <Image
+                    className="w-8 h-8 rounded-full"
+                    src={chatgpt}
+                    alt="alt"
+                    width={100}
+                    height={100}
+                  />
+                  <div className="flex flex-col  w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#ffeaf8] rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                      <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                        Stru Bot
+                      </span>
+                      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        {product.datTime}
+                      </span>
+                    </div>
 
-                  <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-                    {product.reply}
-                  </p>
-                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    Delivered
-                  </span>
-                </div>
-              </div>
-              <div className="flex gap-2.5 justify-end pt-3">
-                <div class="flex flex-col items-end w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
-                  <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                      11:46
-                    </span>
-                    <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                      You
+                    <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+                      {product.message}
+                    </p>
+                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                      Delivered
                     </span>
                   </div>
-
-                  <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white text-end">
-                    {product.message}
-                  </p>
-                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    Delivered
-                  </span>
                 </div>
-                <Image
-                  className="w-8 h-8 rounded-full"
-                  src={chatgpt}
-                  alt="alt"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </div>
-          ))} */}
+              ) : (
+                <div className="flex gap-2.5 justify-end pt-3">
+                  <div className="flex flex-col items-end w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        {product.datTime}
+                      </span>
+                      <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                        You
+                      </span>
+                    </div>
 
-          <div className="flex items-start gap-2.5 pt-3 ">
-            <Image
-              className="w-8 h-8 rounded-full"
-              src={chatgpt}
-              alt="alt"
-              width={100}
-              height={100}
-            />
-            <div className="flex flex-col  w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#ffeaf8] rounded-e-xl rounded-es-xl dark:bg-gray-700">
-              <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                  Stru Bot
-                </span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                  11:46
-                </span>
-              </div>
-
-              <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-                That&apos;s awesome. I think our users will really appreciate
-                the improvements.
-              </p>
-              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                Delivered
-              </span>
+                    <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white text-end">
+                      {product.message}
+                    </p>
+                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                      Delivered
+                    </span>
+                  </div>
+                  <Image
+                    className="w-8 h-8 rounded-full"
+                    src={chatgpt}
+                    alt="alt"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              )}
             </div>
-          </div>
-          <div className="flex items-start gap-2.5 justify-end pt-3">
-            <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
-              <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                  You
-                </span>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                  11:46
-                </span>
-              </div>
-
-              <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white text-end">
-                That&apos;s awesome. I think our users will really appreciate
-                the improvements.
-              </p>
-              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                Delivered
-              </span>
-            </div>
-            <Image
-              className="w-8 h-8 rounded-full"
-              src={chatgpt}
-              alt="alt"
-              width={100}
-              height={100}
-            />
-          </div>
+          ))}
         </div>
 
         {/* <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center "> */}
@@ -245,11 +193,37 @@ const Header = () => {
               placeholder="Start typing..."
               type="text"
               className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none  "
-              value={apiData}
-              onChange={(e) => setApiData(e.target.value)}
+              value={text}
+              onChange={(e) => settext(e.target.value)}
             />
-            <button type="submit">
-              <Image src={submit} alt="submit" />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                if (text) {
+                  setProducts((prev) => [
+                    ...prev,
+                    {
+                      id: products.length,
+                      user: true,
+                      message: text,
+                      datTime: new Date().getUTCDate(),
+                    },
+                  ]);
+                  setTimeout(() => {
+                    setProducts((prev) => [
+                      ...prev,
+                      {
+                        id: prev.length,
+                        user: false,
+                        message: "u idiot",
+                        datTime: new Date().getUTCDate(),
+                      },
+                    ]);
+                  }, 1000);
+                }
+              }}
+            >
+              <Image src={submit} />
             </button>
           </form>
           <p className="text-xs ml-[200px] sm-ml:10 max-[690px]:ml-10 text-[#818181] pt-2">
