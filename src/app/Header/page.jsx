@@ -15,7 +15,7 @@ import { chatData } from "../api/Chatmain";
 import Chat from "@/components/chat/chat";
 
 const Header = () => {
-  const [text, settext] = useState(null);
+  const [text, settext] = useState("");
   const [anything, setAnything] = useState(false);
   const chatContainerRef = useRef(null);
 

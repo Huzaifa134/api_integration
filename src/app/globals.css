@@ -4,6 +4,8 @@
 
 .custom-height {
   height: -webkit-fill-available;
+  height: -moz-available;
+  height: stretch;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
