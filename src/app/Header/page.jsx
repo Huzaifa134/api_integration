@@ -18,6 +18,7 @@ const Header = () => {
   const [text, settext] = useState(null);
   const [anything, setAnything] = useState(false);
   const chatContainerRef = useRef(null);
+
   // const [apiData, setApiData] = useState("");
   let [products, setProducts] = useState([]);
   useEffect(() => {
@@ -29,19 +30,80 @@ const Header = () => {
     }
   }, [products]);
 
-  const api = () => {
-    chatreply(async (res) => {
-      data = res.success;
-      settext(data);
-    });
+  const handleSubmit = async (prompt) => {
+    const url = "https://ashva.pythonanywhere.com/c";
+    let tmpPromptResponse = "";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: "bhoshaga",
+          sessionID: "5380694e-70fe-4ac5-94bf-82d070de4b78",
+          message: prompt,
+        }),
+      });
+
+      // eslint-disable-next-line no-undef
+      let decoder = new TextDecoderStream();
+      if (!response.body) return;
+      const reader = response.body.pipeThrough(decoder).getReader();
+
+      while (true) {
+        var { value, done } = await reader.read();
+
+        if (done) {
+          console.log({ value, tmpPromptResponse, done });
+          break;
+        } else {
+          tmpPromptResponse += value;
+          // setPromptResponse(tmpPromptResponse);
+        }
+      }
+      return tmpPromptResponse.replace("[DONE]", "");
+    } catch (error) {
+      console.log(error);
+      return "";
+    }
   };
+  const getPrompt = async (prompt) => {
+    let message = await handleSubmit(prompt);
+    setProducts((prev) => [
+      ...prev,
+      {
+        id: prev.length,
+        user: false,
+        message: message,
+        datTime: getFormattedDate(),
+      },
+    ]);
+  };
+
   const sendData = () => {};
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
+      // chatContainerRef.current.scrollIntoView({ behaviour: "smooth" });
     }
   };
+
+  function handleEnter(data) {
+    if (data) {
+      setProducts((prev) => [
+        ...prev,
+        {
+          id: products.length,
+          user: true,
+          message: data,
+          datTime: getFormattedDate(),
+        },
+      ]);
+      getPrompt(data);
+    }
+  }
   //   chatData()
   return (
     <div
@@ -181,6 +243,7 @@ const Header = () => {
               )}
             </div>
           ))}
+          {/* <div className="kuchbhi" ref={chatContainerRef}></div> */}
         </div>
 
         {/* <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center "> */}
@@ -189,38 +252,31 @@ const Header = () => {
             action=""
             className="flex border-2 rounded-xl max-[469px]:w-[250px] sm:w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] border-[#6B0485]"
           >
-            <input
+            <textarea
               placeholder="Start typing..."
               type="text"
-              className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none  "
+              className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none no-scroll-resize"
               value={text}
-              onChange={(e) => settext(e.target.value)}
+              onKeyDown={(e) => {
+                //
+                if (e.key == "Enter") {
+                  if (e.shiftKey) {
+                    settext(e.target.value);
+                  } else {
+                    settext("");
+                    handleEnter(e.target.value);
+                  }
+                }
+              }}
+              onChange={(e) => {
+                // console.log(e);
+                settext(e.target.value);
+              }}
             />
             <button
               onClick={(e) => {
                 e.preventDefault();
-                if (text) {
-                  setProducts((prev) => [
-                    ...prev,
-                    {
-                      id: products.length,
-                      user: true,
-                      message: text,
-                      datTime: new Date().getUTCDate(),
-                    },
-                  ]);
-                  setTimeout(() => {
-                    setProducts((prev) => [
-                      ...prev,
-                      {
-                        id: prev.length,
-                        user: false,
-                        message: "u idiot",
-                        datTime: new Date().getUTCDate(),
-                      },
-                    ]);
-                  }, 1000);
-                }
+                handleEnter(text);
               }}
             >
               <Image src={submit} />
@@ -313,3 +369,32 @@ const Header = () => {
 };
 
 export default Header;
+
+function getFormattedDate() {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const currentDate = new Date();
+
+  const month = months[currentDate.getMonth()];
+  const day = currentDate.getDate();
+  const year = currentDate.getFullYear();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+  const ampm = hours >= 12 ? "PM" : "AM";
+  const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+  return `${month} ${day} ${year} - ${formattedHours}:${formattedMinutes} ${ampm}`;
+}
