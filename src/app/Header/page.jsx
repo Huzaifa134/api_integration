@@ -122,7 +122,7 @@ const Header = () => {
         </div> */}
 
         <div className="w-500px w-full mt-8 h-[485px] overflow-auto mb-3 no-scrollbar">
-          {products.map((product) => (
+          {/* {products.map((product) => (
             <div key={product.id}>
               <div className="flex items-start gap-2.5 pt-3 ">
                 <Image
@@ -177,9 +177,9 @@ const Header = () => {
                 />
               </div>
             </div>
-          ))}
+          ))} */}
 
-          {/* <div className="flex items-start gap-2.5 pt-3 ">
+          <div className="flex items-start gap-2.5 pt-3 ">
             <Image
               className="w-8 h-8 rounded-full"
               src={chatgpt}
@@ -232,7 +232,7 @@ const Header = () => {
               width={100}
               height={100}
             />
-          </div> */}
+          </div>
         </div>
 
         {/* <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center "> */}
