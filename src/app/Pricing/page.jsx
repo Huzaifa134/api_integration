@@ -14,11 +14,10 @@ const Price = () => {
         <h1 className="text-5xl font-bold mb-5 mt-5 text-center ">
           Work Faster.{" "}
           <span
-            className="bg-gradient-to-r from-20% from-[#ff27c3] to-[#2496ff] to-70% bg-clip-text text-transparent"
-            // style={{
-            //   background:
-            //     "linear-gradient(90deg,#ff27c3 14.12%,#2496ff 71.08%);-webkit-background-clip: text;-webkit-text-fill-color: transparent",
-            // }}
+            style={{
+              background:
+                "linear-gradient(90deg,#ff27c3 14.12%,#2496ff 71.08%);-webkit-background-clip: text;-webkit-text-fill-color: transparent",
+            }}
           >
             {" "}
             Pay Less.
@@ -41,11 +40,10 @@ const Price = () => {
         >
           Annaly{" "}
           <span
-            className="bg-gradient-to-r from-15% from-[#ff27c3] to-[#2496ff] to-70% bg-clip-text text-transparent"
-            // style={{
-            //   background:
-            //     "linear-gradient(90deg,#ff27c3 14.12%,#2496ff 71.08%);-webkit-background-clip: text;-webkit-text-fill-color: transparent",
-            // }}
+            style={{
+              background:
+                "linear-gradient(90deg,#ff27c3 14.12%,#2496ff 71.08%);-webkit-background-clip: text;-webkit-text-fill-color: transparent",
+            }}
           >
             Save 20%
           </span>
