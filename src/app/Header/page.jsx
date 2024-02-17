@@ -108,15 +108,12 @@ const Header = () => {
   return (
     <div
       style={{
-        backgroundColor: "#161618",
-        width: "97%",
         margin: "0 auto",
-        justifyContent: "space-between",
       }}
-      className="text-white  rounded-xl  flex flex-wrap  "
+      className="text-white justify-between w-[97%] rounded-xl bg-[#161618] flex flex-wrap max-[960px]:justify-center  "
     >
-      <div className="flex flex-col items-center mt-[40px] ml-[100px] bg-[#212125] rounded-xl custom-height p-6">
-        <div className="flex w-[450px] justify-between ">
+      <div className="flex flex-col items-center mt-[40px] ml-[100px] bg-[#212125] rounded-xl custom-height p-6 w-[750px] max-[960px]:w-[95%] max-[960px]:ml-0">
+        <div className="flex w-full justify-center ">
           <Image
             src={blue_logo}
             alt="blue Logo"
@@ -125,7 +122,7 @@ const Header = () => {
             // className="mt-12 ml-16"
           />
           {/* <h2 className=" mt-10  md:ml-96 text-xl font-bold sm:ml-60 max-[488px]:ml-5 max-[690px]:ml-32"> */}
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl font-bold pl-3">
             AI{" "}
             <span
               className="bg-gradient-to-r from-20% from-[#ff27c3] to-[#2496ff] to-70% bg-clip-text text-transparent"
@@ -187,7 +184,7 @@ const Header = () => {
           {products.map((product) => (
             <div key={product.id}>
               {!product.user ? (
-                <div className="flex items-start gap-2.5 pt-3 ">
+                <div className="flex items-start gap-2.5 pt-3 mr-20">
                   <Image
                     className="w-8 h-8 rounded-full"
                     src={chatgpt}
@@ -214,18 +211,18 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <div className="flex gap-2.5 justify-end pt-3">
-                  <div className="flex flex-col items-end w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                <div className="flex gap-2.5 justify-end pt-3 ml-20">
+                  <div className="flex flex-col items-start w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
                     <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        {product.datTime}
-                      </span>
                       <span className="text-sm font-semibold text-gray-900 dark:text-white">
                         You
                       </span>
+                      <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        {product.datTime}
+                      </span>
                     </div>
 
-                    <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white text-end">
+                    <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
                       {product.message}
                     </p>
                     <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -247,15 +244,15 @@ const Header = () => {
         </div>
 
         {/* <div className="flex  flex-col mt-32 pb-32 lg:ml-32 sm:ml-10  justify-center "> */}
-        <div className="flex flex-col justify-center ">
+        <div className="flex flex-col items-center w-full">
           <form
             action=""
-            className="flex border-2 rounded-xl max-[469px]:w-[250px] sm:w-[600px] max-[690px]:w-[400px] max-[690px]:ml-10 h-[50px] border-[#6B0485]"
+            className="flex border-2 px-4 rounded-xl w-full h-[50px] border-[#6B0485]"
           >
             <textarea
               placeholder="Start typing..."
               type="text"
-              className="bg-transparent md:w-[550px] sm:w-[355px] max-[469px]:w-[200px] max-[690px]:w-[350px]   p-5  border-0 focus:outline-none no-scroll-resize"
+              className="bg-transparent w-full py-[10px]  border-0 focus:outline-none no-scroll-resize"
               value={text}
               onKeyDown={(e) => {
                 //
@@ -282,7 +279,7 @@ const Header = () => {
               <Image src={submit} />
             </button>
           </form>
-          <p className="text-xs ml-[200px] sm-ml:10 max-[690px]:ml-10 text-[#818181] pt-2">
+          <p className="text-xs text-[#818181] pt-2">
             AI can make mistakes, verify all information.
           </p>
         </div>

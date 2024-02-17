@@ -11,8 +11,8 @@ import {
 
 const Nav = () => {
   return (
-    <div className="mb-10 text-white w-[97%]  " style={{ margin: "10px auto" }}>
-      <nav className="flex   ml-44 mt-10 ">
+    <div className=" flex text-white w-full py-5 justify-between px-44 max-[960px]:px-12 ">
+      <nav className="flex">
         <ul className="lg:flex gap-x-20 hidden">
           <li>
             <Link href="/">S T R U</Link>
@@ -67,7 +67,7 @@ const Nav = () => {
         </div>
       </nav>
 
-      <div className="mr-44 mt-[-20px]" style={{ float: "right" }}>
+      <div className="">
         <a href="">Sign in</a>
       </div>
     </div>
