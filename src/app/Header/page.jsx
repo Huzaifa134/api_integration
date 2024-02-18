@@ -205,9 +205,9 @@ const Header = () => {
                     <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
                       {product.message}
                     </p>
-                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                      Delivered
-                    </span>
+                    {/* <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                      Recieved
+                    </span> */}
                   </div>
                 </div>
               ) : (
@@ -225,9 +225,9 @@ const Header = () => {
                     <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
                       {product.message}
                     </p>
-                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    {/* <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                       Delivered
-                    </span>
+                    </span> */}
                   </div>
                   <Image
                     className="w-8 h-8 rounded-full"
