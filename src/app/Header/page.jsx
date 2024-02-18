@@ -110,9 +110,9 @@ const Header = () => {
       style={{
         margin: "0 auto",
       }}
-      className="text-white justify-between w-[97%] rounded-xl bg-[#161618] flex flex-wrap max-[960px]:justify-center  "
+      className="text-white justify-between w-[97%] rounded-xl bg-[#161618] flex flex-wrap max-[1220px]:justify-center  "
     >
-      <div className="flex flex-col items-center mt-[40px] ml-[100px] bg-[#212125] rounded-xl custom-height p-6 w-[750px] max-[960px]:w-[95%] max-[960px]:ml-0">
+      <div className="flex flex-col items-center mt-[40px] ml-[100px] bg-[#212125] rounded-xl custom-height p-6 w-[750px] max-[1220px]:w-[90%] max-[1220px]:ml-0">
         <div className="flex w-full justify-center ">
           <Image
             src={blue_logo}
