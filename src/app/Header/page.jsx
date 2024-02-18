@@ -212,7 +212,7 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="flex gap-2.5 justify-end pt-3 ml-20">
-                  <div className="flex flex-col items-start w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                  <div className="flex flex-col items-start w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-[#e0f0ff] rounded-s-xl rounded-ee-xl dark:bg-gray-700">
                     <div className="flex items-center space-x-2 rtl:space-x-reverse">
                       <span className="text-sm font-semibold text-gray-900 dark:text-white">
                         You
