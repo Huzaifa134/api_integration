@@ -1,6 +1,6 @@
 import { Inter, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import Nav from "./Nav/page";
+import Nav from "../components/Nav";
 const inter = Inter({ subsets: ["latin"] });
 const source_san = Source_Sans_3({ subsets: ["latin"] });
 

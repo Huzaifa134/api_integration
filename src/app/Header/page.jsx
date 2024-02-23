@@ -90,6 +90,21 @@ const Header = () => {
     }
   };
 
+  // const scrollToBottom = () => {
+  //   if (chatContainerRef.current) {
+  //     chatContainerRef.current.classList.add("scroll-animation");
+
+  //     // Scroll to the bottom
+  //     chatContainerRef.current.scrollTop =
+  //       chatContainerRef.current.scrollHeight;
+
+  //     // Remove the animation class after the animation ends
+  //     setTimeout(() => {
+  //       chatContainerRef.current.classList.remove("scroll-animation");
+  //     }, 500); // Adjust the duration (0.5s) to match the animation duration in CSS
+  //   }
+  // };
+
   function handleEnter(data) {
     if (data) {
       setProducts((prev) => [
@@ -178,7 +193,7 @@ const Header = () => {
         </div> */}
 
         <div
-          className="w-500px w-full mt-8 h-[485px] overflow-auto mb-3 no-scrollbar"
+          className="w-500px w-full mt-8 h-[485px] overflow-auto mb-3 no-scrollbar scroll-behavior: smooth;"
           ref={chatContainerRef}
         >
           {products.map((product) => (

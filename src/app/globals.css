@@ -22,3 +22,16 @@
   overflow: hidden;
   resize: none;
 }
+
+.scroll-animation {
+  animation: scrollAnimation 0.5s ease forwards;
+}
+
+@keyframes scrollAnimation {
+  from {
+    scroll-behavior: auto;
+  }
+  to {
+    scroll-behavior: smooth;
+  }
+}
